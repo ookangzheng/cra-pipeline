@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - apt install git
+      - yarn install
+  build:
+    commands:
+      - yarn mybuild
+      - echo version $VERSION
+      - yarn build
+
+artifacts:
+  base-directory: ./build
+  files:
+    - "**/*"
+
+cache:
+  paths:
+    - "./node_modules/**/*"
